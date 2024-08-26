@@ -1,0 +1,34 @@
+<div class="container">
+  <form #myForm="ngForm">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="box1">Box 1 </label>
+          <input class="form-control" type="number" name="box1" id="box1" [(ngModel)]="value1" ngModel required
+            #myBoxControl1="ngModel" (blur)="updateValue('box1', value1)" max="100" />
+          <span class="small text-danger"
+            *ngIf="(myBoxControl1.touched && !myBoxControl1.valid) || (myBoxControl1.errors?.['max'])">Invalid number
+          </span>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="box2">Box 2 </label>
+          <input class="form-control" type="number" name="box2" id="box2" [(ngModel)]="value2" ngModel required
+            #myBox2Control="ngModel" max="100" (blur)="updateValue('box1', value2)" />
+          <span class="small text-danger"
+            *ngIf="(myBox2Control.touched && !myBox2Control.valid) || (myBox2Control.errors?.['max'])">Invalid number
+          </span>
+        </div>
+      </div>
+      <!-- <button type="button" (click)="createChart()" class="btn btn-info">Create Chart</button> -->
+      <p-button label="Create Chart" severity="success" class="mt-4 ml-3" (click)="createChart()" />
+    </div>
+    
+  </form>
+  <div class="row">
+    <div class="col-sm-3">
+      <p-chart type="pie" [data]="data" [options]="options" />
+    </div>
+  </div>
+</div>
